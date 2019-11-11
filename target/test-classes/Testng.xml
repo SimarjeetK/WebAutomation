@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="New Tour Application">
+    <parameter name="Username" value="TestUser1"></parameter>
+    <parameter name="password" value="_password1"></parameter>
+    <parameter name="firstname" value="UserFirstName$"></parameter>
+    <parameter name="lastname" value="UserLastName$"></parameter>
+
+    <parameter name="departingAirport" value="London"></parameter>
+    <parameter name="departingDay" value="1"></parameter>
+    <parameter name="departingMonth" value="10"></parameter>
+    <parameter name="arrivalPort" value="San Francisco"></parameter>
+    <parameter name="returnDay" value="1"></parameter>
+    <parameter name="returnMonth" value="11"></parameter>
+    <parameter name="airlines" value="Blue Skies Airlines"></parameter>
+
+    <parameter name="cc_number" value="0000111122225555"></parameter>
+    <parameter name="address" value="121 First Street"></parameter>
+    <parameter name="city" value="San Francisco"></parameter>
+    <parameter name="state" value="CA"></parameter>
+    <parameter name="zipcode" value="94111"></parameter>
+
+    <!--<test name="Verify the Login Feature">
+        <classes>
+            <class name="Test.Scripts.TestSignOnFeature"></class>
+        </classes>
+    </test>-->
+    <test name="Verify the Registration Process in the New Tour Application">
+        <classes>
+           <class name="Test.Scripts.TestRegistrationFeature">
+               <methods>
+               <include name="verify_that_User_Can_Successfully_Register_to_the_Application"></include>
+               </methods>
+           </class>
+
+        </classes>
+    </test>
+
+
+   <!-- <test name="Verify The Flight Booking flow for a Logged in User">
+        <classes>
+            <class name="Test.Scripts.TestBookFlightFeature"></class>
+        </classes>
+    </test>-->
+
+</suite>
+  

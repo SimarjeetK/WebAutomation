@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [New Tour Application]">
+  <parameter name="firstname" value="UserFirstName$"/>
+  <parameter name="address" value="121 First Street"/>
+  <parameter name="city" value="San Francisco"/>
+  <parameter name="departingAirport" value="London"/>
+  <parameter name="lastname" value="UserLastName$"/>
+  <parameter name="returnDay" value="1"/>
+  <parameter name="zipcode" value="94111"/>
+  <parameter name="password" value="_password1"/>
+  <parameter name="arrivalPort" value="San Francisco"/>
+  <parameter name="Username" value="TestUser1"/>
+  <parameter name="returnMonth" value="11"/>
+  <parameter name="airlines" value="Blue Skies Airlines"/>
+  <parameter name="departingMonth" value="10"/>
+  <parameter name="state" value="CA"/>
+  <parameter name="departingDay" value="1"/>
+  <parameter name="cc_number" value="0000111122225555"/>
+  <test thread-count="5" verbose="0" name="Verify the Registration Process in the New Tour Application(failed)">
+    <classes>
+      <class name="Test.Scripts.TestRegistrationFeature">
+        <methods>
+          <include name="verify_that_User_Can_Successfully_Register_to_the_Application" invocation-numbers="0"/>
+          <include name="init"/>
+          <include name="tearDown"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- Test.Scripts.TestRegistrationFeature -->
+    </classes>
+  </test> <!-- Verify the Registration Process in the New Tour Application(failed) -->
+</suite> <!-- Failed suite [New Tour Application] -->
