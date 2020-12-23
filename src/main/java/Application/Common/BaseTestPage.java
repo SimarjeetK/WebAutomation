@@ -1,19 +1,21 @@
-package Application.Common;
 
-import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+package Common;
+
+import org.apache.commons.configuration.PropertiesConfiguration;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
+
+
+import java.awt.*;
+
 
 public class BaseTestPage {
 
-    public static String Website_url="http://www.newtours.demoaut.com";
+    public static String authorizationSite_URL=WebDriverBaseTest.getInstance().getProps().getString("authorizationsiteURL");
     public WebDriver driver;
 
 
@@ -21,6 +23,7 @@ public class BaseTestPage {
      *
      * @return therad safe driver
      */
+    @BeforeSuite
     public WebDriver getDriver(){
 
          driver= WebDriverBaseTest.getInstance().getDriver();
@@ -28,16 +31,16 @@ public class BaseTestPage {
      }
 
     /**
-     * This function will run before every Test Method to get the Therad safe Driver and will launch the Website
+     * This function will run before every Test Method to get the Thread safe Driver and will launch the Website
      */
     @BeforeMethod
-    public void init() {
+    public void  init() throws AWTException {
 
         driver =getDriver();
-        System.out.println("I am in Before Method");
-        driver.get(Website_url);
-        driver.manage().window().fullscreen();
-
+        System.out.println("Test Script has been started and Navigating to site::"+ authorizationSite_URL);
+        driver.get(authorizationSite_URL);
+        driver.navigate().to(getProps().getString("applicationURL"));
+        waitForVisibilityOfElement(By.linkText("Home"));
     }
 
 
@@ -49,12 +52,14 @@ public class BaseTestPage {
         System.out.println("I am in After Method");
     }
 
+
     /**
      * Once the Test Execution is complete, it will quite the driver.
      */
     @AfterSuite()
     public void tearDown(){
          System.out.println("Quit the driver");  driver.quit();}
+
 
     /**
      * Duynamic wait is introduced to validate the Visibility of elements on Screen
@@ -78,6 +83,15 @@ public class BaseTestPage {
        return getDriver().findElement(Locator);
     }
 
+    public void waitforPagetoLoad(){
+        try {
+          Thread.sleep(10000);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * add logs into testng reports.
@@ -88,5 +102,15 @@ public class BaseTestPage {
         Reporter.log(message + "<br/>");
 
 
+    }
+    /**
+     * Returns a instance of {@link org.apache.commons.configuration.PropertiesConfiguration}.
+     *
+     * @see org.apache.commons.configuration.PropertiesConfiguration
+     * @return current PropertiesConfiguration
+     */
+    public PropertiesConfiguration getProps() {
+
+        return WebDriverBaseTest.getInstance().getProps();
     }
 }
